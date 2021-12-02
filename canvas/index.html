@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Race </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="car-selection">
+            <h2>Click the car of your choice</h2>
+             <img onclick="choseImage(this.id)" class="cars" id="car-1" src="car-1.png"/>
+             <img onclick="choseImage(this.id)"  class="cars" id="car-2" src="car-2.png"/>
+             <img onclick="choseImage(this.id)" class="cars" id="car-3" src="car-3.png"/>
+             <img onclick="choseImage(this.id)" class="cars" id="car-4" src="car-4.png"/>
+        </div>
+        <div class="game-board">
+                <div class="dice">
+                    <img id="diceImage" class="img-dice" src="dice-6.png" />
+                    <button onclick="roll()" class="butn">Click To Roll</button>
+                </div>
+        </div>
+       
+        <div class="dashboard">
+            <h2>Scores</h2>
+            <h3 id="score"></h3>
+            <h2>Dice Roll Count</h2>
+            <h3 id="rollCount"></h3>
+            <h2 id="message"></h2>
+            <p id="subm"></p>
+        </div>
+    </div>
+    <canvas id="canvas" class="canvas"></canvas>
+ <script>
+    var canvas = document.getElementById('canvas');
+    canvas.width = canvas.getBoundingClientRect().width;
+    canvas.height = canvas.getBoundingClientRect().height;
+    var ctx=canvas.getContext('2d');
+
+    
+var canvas = document.getElementById('canvas');
+canvas.width = canvas.getBoundingClientRect().width;
+canvas.height = canvas.getBoundingClientRect().height;
+var ctx=canvas.getContext('2d');
+ctx.fillStyle = "green";
+
+ctx.fillRect(10, 10, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align="center";
+ctx.fillText('start', 20, 50);
+var img = new Image();
+img.onload = function () {
+    ctx.drawImage(img, 30, 28, 20, 35);
+};
+img.src = 'car-2.png';
+
+
+ctx.fillStyle = "green";
+ctx.fillRect(100, 10, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('1', 128, 53);
+
+ctx.fillStyle = "green";
+ctx.fillRect(190, 10, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('2', 220, 53);
+
+ctx.fillStyle = "green";
+ctx.fillRect(280, 10, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('3', 310, 53);
+
+ctx.fillStyle = "green";
+ctx.fillRect(370, 10, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('4', 310, 53);
+
+ctx.fillStyle = "green";
+ctx.fillRect(460, 10, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('5', 310, 53);
+
+ctx.fillStyle = "green";
+ctx.fillRect(460, 100, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('6', 310, 53);
+
+ctx.fillStyle = "green";
+ctx.fillRect(460, 190, 70, 70);
+ctx.fillStyle = "red";
+ctx.font = "30px serif";
+ctx.Align = "center";
+ctx.fillText('6', 310, 53);
+
+var y1=280;
+for(var i=0;i<2;i++){
+    ctx.fillStyle = "green";
+    ctx.fillRect(460, y1, 70, 70);
+    ctx.fillStyle = "red";
+    ctx.font = "30px serif";
+    ctx.Align = "center";
+    ctx.fillText('6', 310, 53);
+    y1=y1+20+70;
+}
+var x1=390-20;
+for(var i=0;i<5;i++){
+    ctx.fillStyle = "green";
+    ctx.fillRect(x1, y1-90, 70, 70);
+    ctx.fillStyle = "red";
+    ctx.font = "30px serif";
+    ctx.Align = "center";
+    ctx.fillText('6', 310, 53);
+    x1=x1-90;
+}
+x1=x1+90;
+for(var i=0;i<4;i++){
+    ctx.fillStyle = "green";
+    y1=y1-90;
+    ctx.fillRect(x1, y1, 70, 70);
+    ctx.fillStyle = "red";
+    ctx.font = "30px serif";
+    ctx.Align = "center";
+    ctx.fillText('6', 310, 53);
+}
+
+ </script>
+</body>
+</html>
