@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Race </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="car-selection">
+            <h2>Click the car of your choice</h2>
+             <img onclick="choseImage(this.id)" class="cars" id="car-1" src="car-1.png"/>
+             <img onclick="choseImage(this.id)"  class="cars" id="car-2" src="car-2.png"/>
+             <img onclick="choseImage(this.id)" class="cars" id="car-3" src="car-3.png"/>
+             <img onclick="choseImage(this.id)" class="cars" id="car-4" src="car-4.png"/>
+        </div>
+        <div class="game-board">
+            <div class="row1">
+                    <div class="square" id="sq0" onclick="startOver()">
+                        <img class="carselected" id="ig0"/><p>Start</p></div>
+                    <div class="square" id="sq1">
+                        <img class="carselected" id="ig1"/><p>01</p></div>
+                    <div class="square" id="sq2">
+                        <img class="carselected" id="ig2"/><p>02</p></div>
+                    <div class="square" id="sq3">
+                        <img class="carselected" id="ig3"/><p>03</p></div>
+                    <div class="square" id="sq4">
+                        <img class="carselected" id="ig4"/><p>04</p></div>
+                    <div class="square" id="sq5">
+                        <img class="carselected" id="ig5"/><p>05</p></div>
+            </div>
+            <div class="row2">
+                <div class="">
+                    <div class="square" id="sq17">
+                        <img class="carselected" id="ig17"/><p>17</p></div>
+                    <div class="square" id="sq16">
+                        <img class="carselected" id="ig16"/><p>16</p></div>
+                    <div class="square" id="sq15">
+                        <img class="carselected" id="ig15"/><p>15</p></div>
+                </div>
+                <div class="dice">
+                    <img id="diceImage" class="img-dice" src="dice-6.png" />
+                    <button onclick="roll()" class="butn">Click To Roll</button>
+                </div>
+                <div class="">
+                    <div class="square" id="sq6">
+                        <img class="carselected" id="ig6"/><p>06</p></div>
+                    <div class="square" id="sq7">
+                        <img class="carselected" id="ig7"/><p>07</p></div>
+                    <div class="square" id="sq8">
+                        <img class="carselected" id="ig8"/><p>08</p></div>
+                </div>
+            </div>
+            <div class="row3">
+                <div class="square" id="sq14">
+                    <img class="carselected" id="ig14"/><p>14</p></div>
+                <div class="square" id="sq13">
+                    <img class="carselected" id="ig13"/><p>13</p></div>
+                <div class="square" id="sq12">
+                    <img class="carselected" id="ig12"/><p>12</p></div>
+                <div class="square" id="sq11">
+                    <img class="carselected" id="ig11"/><p>11</p></div>
+                <div class="square" id="sq10">
+                    <img class="carselected" id="ig10"/><p>10</p></div>
+                <div class="square" id="sq9">
+                    <img class="carselected" id="ig9"/><p>09</p></div>
+            </div>
+        </div>
+        <div class="dashboard">
+            <h2>Scores</h2>
+            <h3 id="score"></h3>
+            <h2>Dice Roll Count</h2>
+            <h3 id="rollCount"></h3>
+            <h2 id="message"></h2>
+            <p id="subm"></p>
+        </div>
+    </div>
+ 
+    <script>
+        var score = 0;
+        var bonus = 300;
+        var image='';
+        var position = 0;
+        var rollRandom;
+        var rollCount = 0;
+        function roll() {
+            if(image==''){
+                document.querySelector("#message").style.color='Red';
+                document.querySelector("#message").innerHTML = "Please choose a car to proceed!";
+                return;
+            }
+         setTimeout(function(){
+             rollRandom = Math.floor(Math.random()*6)+1;
+            //  console.log(rollRandom);
+             document.querySelector("#diceImage").setAttribute("src", "dice-"+rollRandom+".png");
+             rollCount+=1;
+             document.querySelector('#rollCount').innerHTML = rollCount;
+            var p = position;
+            p += rollRandom;
+           
+            if(p<18){
+                while(position<p){
+                    position += 1;
+                    console.log(position);
+                    document.querySelector("#ig"+position).setAttribute("src", image);
+                    document.querySelector("#ig"+position).style.visibility="visible";
+                    for(let i=0;i<18;i++){
+                        if (i==position){
+                            continue;
+                        }
+                        else{
+                            document.querySelector("#ig"+i).style.visibility="hidden";
+                        }
+                    }
+                    if(position%10==0){
+                        score += 300;
+                    }
+                    else{
+                    score += 100;
+                    }
+                }
+                console.log(score);
+                document.querySelector('#score').innerHTML = score;
+            }
+            
+            else{
+                if(position==17){
+                    document.querySelector("#message").style.color='Green';
+                    document.querySelector("#message").innerHTML = "Wohoo!<br> You won the Game!!!Click on Start to start a new game";
+                    document.querySelector("#subm").innerHTML = "Click on Start to start a new game";
+                }
+                else{
+                document.querySelector("#message").style.color='Orange';
+                document.querySelector("#message").innerHTML = "Try your luck again! <br> Re-Roll the dice.";
+                p = position;
+                }
+            }
+            
+         }, 1000);
+
+ 
+        }
+        function choseImage(chosenId) {
+            image = chosenId+'.png';
+            document.querySelector("#ig0").setAttribute("src", chosenId+'.png');
+            document.querySelector("#message").innerHTML = "GET! SET! GOO!";
+        }
+
+        function startOver() {
+            location.reload();
+            document.querySelector("#message").innerHTML = "Choose a new car to restart";
+        }
+
+    </script>
+</body>
+</html>
